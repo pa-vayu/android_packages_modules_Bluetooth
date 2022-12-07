@@ -68,6 +68,7 @@ java_library {
         "androidx.annotation_annotation",
         "androidx.appcompat_appcompat",
         "modules-utils-shell-command-handler",
+        "bluetooth-nano-protos",
     ],
 
     apex_available: [
@@ -159,4 +160,21 @@ gensrcs {
         ":srcs_bluetooth_protos",
     ],
     output_extension: "srcjar",
+}
+
+java_library {
+    name: "bluetooth-nano-protos",
+    sdk_version: "system_current",
+    min_sdk_version: "Tiramisu",
+    proto: {
+        type: "nano",
+    },
+    srcs: [
+        ":system-messages-proto-src",
+    ],
+    libs: ["libprotobuf-java-nano"],
+    apex_available: [
+        "com.android.bluetooth",
+    ],
+    lint: { strict_updatability_linting: true },
 }
